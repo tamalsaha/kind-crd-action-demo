@@ -25,11 +25,11 @@ jobs:
       id: kind
       uses: engineerd/setup-kind@v0.1.0
       with:
+        version: v0.6.0
         image: kindest/node:${{ matrix.k8s }}
 
     - name: Prepare cluster for testing
       run: |
-        export KUBECONFIG="$(kind get kubeconfig-path)"
         echo
         echo "waiting for nodes to be ready ..."
         kubectl wait --for=condition=Ready nodes --all --timeout=5m
